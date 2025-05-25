@@ -6,6 +6,23 @@ import { Menu, X } from 'lucide-react';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleSignIn = () => {
+    console.log("Sign In clicked");
+    alert("Sign In feature coming soon!");
+  };
+
+  const handleGetStarted = () => {
+    console.log("Get Started clicked");
+    // Scroll to features section
+    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleNavClick = (section: string) => {
+    console.log(`Navigation to ${section} clicked`);
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false); // Close mobile menu
+  };
+
   return (
     <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
       <div className="container mx-auto px-6 py-4">
@@ -21,13 +38,13 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-300 hover:text-white transition-colors">Features</a>
-            <a href="#capabilities" className="text-gray-300 hover:text-white transition-colors">Capabilities</a>
-            <a href="#about" className="text-gray-300 hover:text-white transition-colors">About</a>
-            <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white">
+            <a href="#features" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">Features</a>
+            <a href="#capabilities" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">Capabilities</a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">About</a>
+            <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white" onClick={handleSignIn}>
               Sign In
             </Button>
-            <Button className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600">
+            <Button className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600" onClick={handleGetStarted}>
               Get Started
             </Button>
           </div>
@@ -49,14 +66,14 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-white/10">
             <div className="flex flex-col space-y-4 mt-4">
-              <a href="#features" className="text-gray-300 hover:text-white transition-colors">Features</a>
-              <a href="#capabilities" className="text-gray-300 hover:text-white transition-colors">Capabilities</a>
-              <a href="#about" className="text-gray-300 hover:text-white transition-colors">About</a>
+              <a href="#features" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">Features</a>
+              <a href="#capabilities" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">Capabilities</a>
+              <a href="#about" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">About</a>
               <div className="flex flex-col space-y-2 pt-4">
-                <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white">
+                <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white" onClick={handleSignIn}>
                   Sign In
                 </Button>
-                <Button className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600">
+                <Button className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600" onClick={handleGetStarted}>
                   Get Started
                 </Button>
               </div>

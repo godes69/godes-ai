@@ -4,6 +4,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const Features = () => {
+  const handleTryFeature = (featureName: string) => {
+    console.log(`Try ${featureName} clicked`);
+    alert(`${featureName} feature coming soon!`);
+  };
+
+  const handleLaunchStudio = () => {
+    console.log("Launch Godes AI Studio clicked");
+    alert("Godes AI Studio coming soon!");
+  };
+
   const features = [
     {
       title: "Website Generation",
@@ -77,6 +87,7 @@ const Features = () => {
                     <Button 
                       variant="outline" 
                       className="border-white/20 text-white hover:bg-white/10 group-hover:border-white/40 transition-all"
+                      onClick={() => handleTryFeature(feature.title)}
                     >
                       Try {feature.title}
                     </Button>
@@ -93,6 +104,7 @@ const Features = () => {
           <Button 
             size="lg" 
             className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-lg px-8 py-4 h-auto"
+            onClick={handleLaunchStudio}
           >
             Launch Godes AI Studio
           </Button>

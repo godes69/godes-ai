@@ -4,6 +4,22 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
+  const handleStartCreating = () => {
+    console.log("Start Creating Now clicked");
+    // Scroll to features section
+    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleWatchDemo = () => {
+    console.log("Watch Demo clicked");
+    // You can replace this with actual demo functionality
+    alert("Demo feature coming soon!");
+  };
+
+  const handleScrollDown = () => {
+    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 px-6">
       <div className="container mx-auto text-center">
@@ -28,6 +44,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-lg px-8 py-4 h-auto"
+              onClick={handleStartCreating}
             >
               Start Creating Now
             </Button>
@@ -35,6 +52,7 @@ const Hero = () => {
               size="lg" 
               variant="outline" 
               className="border-white/20 text-white hover:bg-white/10 text-lg px-8 py-4 h-auto"
+              onClick={handleWatchDemo}
             >
               Watch Demo
             </Button>
@@ -60,7 +78,7 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer" onClick={handleScrollDown}>
           <ArrowDown className="text-white/50" size={24} />
         </div>
       </div>
