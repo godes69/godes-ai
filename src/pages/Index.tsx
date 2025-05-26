@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,6 +7,7 @@ import Features from "@/components/Features";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ThreeBackground from "@/components/ThreeBackground";
+import AIStudio from "@/components/AIStudio";
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,6 +23,7 @@ const Index = () => {
         <Navbar />
         <Hero />
         <Features />
+        <AIStudio />
         <Footer />
       </div>
     </div>
