@@ -30,8 +30,8 @@ const AIStudio = () => {
         do_sample: true,
       });
       
-      // Handle the output correctly - it's an array with generated_text property
-      const generatedText = Array.isArray(output) ? output[0]?.generated_text || output[0]?.text || JSON.stringify(output[0]) : String(output);
+      // Handle the output correctly - convert to string safely
+      const generatedText = typeof output === 'string' ? output : JSON.stringify(output, null, 2);
       setResult(generatedText);
     } catch (error) {
       console.error('Text generation error:', error);
@@ -58,8 +58,8 @@ const AIStudio = () => {
         do_sample: true,
       });
       
-      // Handle the output correctly - it's an array with generated_text property
-      const generatedText = Array.isArray(output) ? output[0]?.generated_text || output[0]?.text || JSON.stringify(output[0]) : String(output);
+      // Handle the output correctly - convert to string safely
+      const generatedText = typeof output === 'string' ? output : JSON.stringify(output, null, 2);
       setResult(generatedText);
     } catch (error) {
       console.error('Code generation error:', error);
