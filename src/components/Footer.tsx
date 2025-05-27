@@ -3,6 +3,14 @@ import { Badge } from "@/components/ui/badge";
 import { Sparkles, Heart } from 'lucide-react';
 
 const Footer = () => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    (e.target as HTMLElement).style.color = 'var(--primary-accent)';
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    (e.target as HTMLElement).style.color = 'var(--secondary-text)';
+  };
+
   return (
     <footer className="section-light border-t py-16 px-6" style={{ borderColor: 'var(--border-color)' }}>
       <div className="container mx-auto">
@@ -28,20 +36,20 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-6" style={{ color: 'var(--primary-text)' }}>Platform</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}>Website Generator</a></li>
-              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}>Game Creator</a></li>
-              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}>Image Studio</a></li>
-              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}>3D Modeler</a></li>
+              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Website Generator</a></li>
+              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Game Creator</a></li>
+              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Image Studio</a></li>
+              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>3D Modeler</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-bold mb-6" style={{ color: 'var(--primary-text)' }}>Resources</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}>Documentation</a></li>
-              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}>Tutorials</a></li>
-              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}>Community</a></li>
-              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'} onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}>Support</a></li>
+              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Documentation</a></li>
+              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Tutorials</a></li>
+              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Community</a></li>
+              <li><a href="#" className="transition-colors duration-400 hover:underline" style={{ color: 'var(--secondary-text)' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Support</a></li>
             </ul>
           </div>
         </div>

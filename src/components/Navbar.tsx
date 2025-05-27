@@ -22,6 +22,14 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    (e.target as HTMLElement).style.color = 'var(--primary-accent)';
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    (e.target as HTMLElement).style.color = 'var(--secondary-text)';
+  };
+
   return (
     <nav className="fixed top-0 w-full z-50 glass-effect border-b" style={{ borderColor: 'var(--border-color)' }}>
       <div className="container mx-auto px-6 py-4">
@@ -42,8 +50,8 @@ const Navbar = () => {
               onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
               className="font-medium transition-all duration-400 hover:scale-105" 
               style={{ color: 'var(--secondary-text)' }}
-              onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'}
-              onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               Features
             </a>
@@ -52,8 +60,8 @@ const Navbar = () => {
               onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
               className="font-medium transition-all duration-400 hover:scale-105" 
               style={{ color: 'var(--secondary-text)' }}
-              onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'}
-              onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               Capabilities
             </a>
@@ -62,8 +70,8 @@ const Navbar = () => {
               onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
               className="font-medium transition-all duration-400 hover:scale-105" 
               style={{ color: 'var(--secondary-text)' }}
-              onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'}
-              onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               About
             </a>
