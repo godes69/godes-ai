@@ -1,53 +1,121 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Sparkles, Zap, Globe } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Brain, Cpu, Rocket } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const handleExploreFeatures = () => {
-    console.log("Explore Features clicked");
     document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-6">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-400/30 to-blue-400/30 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-4000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-gradient-to-r from-green-400/30 to-cyan-400/30 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Ultra-premium animated background */}
+      <div className="absolute inset-0">
+        {/* Animated gradient orbs */}
+        <div 
+          className="absolute w-96 h-96 rounded-full animate-morph opacity-30"
+          style={{
+            background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
+            left: `${20 + mousePosition.x * 0.01}%`,
+            top: `${20 + mousePosition.y * 0.01}%`,
+            filter: 'blur(40px)',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+        <div 
+          className="absolute w-80 h-80 rounded-full animate-morph opacity-20"
+          style={{
+            background: 'linear-gradient(135deg, #ec4899, #f59e0b)',
+            right: `${15 + mousePosition.x * 0.008}%`,
+            top: `${30 + mousePosition.y * 0.008}%`,
+            filter: 'blur(50px)',
+            transform: 'translate(50%, -50%)',
+            animationDelay: '2s',
+          }}
+        />
+        <div 
+          className="absolute w-72 h-72 rounded-full animate-morph opacity-25"
+          style={{
+            background: 'linear-gradient(135deg, #06b6d4, #10b981)',
+            left: `${60 + mousePosition.x * 0.006}%`,
+            bottom: `${20 + mousePosition.y * 0.006}%`,
+            filter: 'blur(45px)',
+            transform: 'translate(-50%, 50%)',
+            animationDelay: '4s',
+          }}
+        />
+
+        {/* Floating particles */}
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-purple-400 rounded-full animate-float-premium opacity-60"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${4 + Math.random() * 4}s`,
+            }}
+          />
+        ))}
+
+        {/* Grid overlay */}
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+          }}
+        />
       </div>
 
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center animate-fade-in">
-          <Badge className="mb-6 bg-white/10 text-white border-white/20 px-6 py-2 text-base backdrop-blur-lg animate-scale-in">
-            <Sparkles className="w-4 h-4 mr-2" />
-            🚀 The Future of AI Creation is Here
+      <div className="container mx-auto max-w-7xl relative z-10 px-6">
+        <div className={`text-center transition-all duration-1500 ${isVisible ? 'animate-slide-in-premium' : 'opacity-0'}`}>
+          <Badge className="mb-8 glass-effect border-purple-500/30 text-purple-300 px-8 py-3 text-lg hover-glow">
+            <Sparkles className="w-5 h-5 mr-3 animate-pulse" />
+            🚀 Next-Generation AI Experience
           </Badge>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight animate-scale-in animation-delay-300">
-            <span className="block text-white mb-4">Create Anything</span>
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-              with AI Power
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-12 leading-none">
+            <span className="block text-white mb-6 animate-text-glow">Create Beyond</span>
+            <span className="gradient-text-premium text-7xl md:text-9xl lg:text-[12rem] animate-gradient-x">
+              Imagination
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-gray-200 animate-fade-in animation-delay-500">
-            Generate <strong className="text-cyan-300">websites</strong>, create <strong className="text-purple-300">games</strong>, 
-            design <strong className="text-pink-300">images</strong>, and build <strong className="text-green-300">3D models</strong> 
-            — all with unlimited usage, completely free forever.
+          <p className="text-xl md:text-3xl mb-16 max-w-5xl mx-auto leading-relaxed text-gray-300 opacity-0 animate-fade-in-premium" style={{ animationDelay: '0.5s' }}>
+            Unleash the power of <strong className="gradient-text-glow">unlimited AI</strong> that thinks, creates, and evolves. 
+            Generate <strong className="text-cyan-400">websites</strong>, build <strong className="text-purple-400">applications</strong>, 
+            design <strong className="text-pink-400">experiences</strong>, and automate <strong className="text-green-400">everything</strong> 
+            — all with the most advanced AI assistant ever created.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in animation-delay-700">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-20 opacity-0 animate-scale-in-premium" style={{ animationDelay: '0.8s' }}>
             <Link to="/chat">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-white px-8 py-4 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Zap className="mr-2 w-5 h-5" />
+              <Button className="btn-premium text-xl px-12 py-6 hover-lift">
+                <Brain className="mr-3 w-6 h-6" />
                 Start Creating Now
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <ArrowRight className="ml-3 w-6 h-6" />
               </Button>
             </Link>
             
@@ -55,46 +123,45 @@ const Hero = () => {
               variant="outline" 
               size="lg" 
               onClick={handleExploreFeatures}
-              className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg rounded-full backdrop-blur-lg transition-all duration-300 transform hover:scale-105"
+              className="glass-effect border-white/20 text-white hover-glow px-12 py-6 text-xl"
             >
-              <Globe className="mr-2 w-5 h-5" />
-              Explore Features
+              <Zap className="mr-3 w-6 h-6" />
+              Explore AI Powers
             </Button>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in animation-delay-1000">
-            <div className="text-center group hover:scale-110 transition-all duration-300">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl">
-                <Globe className="w-8 h-8 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto opacity-0 animate-fade-in-premium" style={{ animationDelay: '1.2s' }}>
+            <div className="neu-card p-8 rounded-2xl hover-lift group">
+              <div className="w-20 h-20 mx-auto mb-6 glass-effect rounded-3xl flex items-center justify-center group-hover:animate-glow-pulse">
+                <Cpu className="w-10 h-10 text-purple-400" />
               </div>
-              <h3 className="font-bold text-white mb-2">Websites</h3>
-              <p className="text-sm text-gray-300">Professional sites in seconds</p>
+              <h3 className="font-bold text-2xl text-white mb-4 gradient-text-glow">AI Development</h3>
+              <p className="text-gray-400 text-lg leading-relaxed">Build complete applications, websites, and digital experiences with conversational AI</p>
             </div>
             
-            <div className="text-center group hover:scale-110 transition-all duration-300">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl">
-                <Zap className="w-8 h-8 text-white" />
+            <div className="neu-card p-8 rounded-2xl hover-lift group" style={{ animationDelay: '1.4s' }}>
+              <div className="w-20 h-20 mx-auto mb-6 glass-effect rounded-3xl flex items-center justify-center group-hover:animate-glow-pulse">
+                <Brain className="w-10 h-10 text-cyan-400" />
               </div>
-              <h3 className="font-bold text-white mb-2">Games</h3>
-              <p className="text-sm text-gray-300">Interactive experiences</p>
+              <h3 className="font-bold text-2xl text-white mb-4 gradient-text-glow">Deep Intelligence</h3>
+              <p className="text-gray-400 text-lg leading-relaxed">Advanced reasoning, analysis, and problem-solving across any domain or language</p>
             </div>
             
-            <div className="text-center group hover:scale-110 transition-all duration-300">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-pink-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl">
-                <Sparkles className="w-8 h-8 text-white" />
+            <div className="neu-card p-8 rounded-2xl hover-lift group" style={{ animationDelay: '1.6s' }}>
+              <div className="w-20 h-20 mx-auto mb-6 glass-effect rounded-3xl flex items-center justify-center group-hover:animate-glow-pulse">
+                <Rocket className="w-10 h-10 text-pink-400" />
               </div>
-              <h3 className="font-bold text-white mb-2">Images</h3>
-              <p className="text-sm text-gray-300">Stunning AI artwork</p>
-            </div>
-            
-            <div className="text-center group hover:scale-110 transition-all duration-300">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl">
-                <Globe className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-white mb-2">3D Models</h3>
-              <p className="text-sm text-gray-300">Professional 3D assets</p>
+              <h3 className="font-bold text-2xl text-white mb-4 gradient-text-glow">Limitless Creation</h3>
+              <p className="text-gray-400 text-lg leading-relaxed">From code to content, design to deployment - create anything you can imagine</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Premium scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in-premium" style={{ animationDelay: '2s' }}>
+        <div className="w-8 h-12 border-2 border-purple-400 rounded-full p-2">
+          <div className="w-1 h-3 bg-purple-400 rounded-full animate-bounce mx-auto"></div>
         </div>
       </div>
     </section>
