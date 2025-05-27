@@ -1,84 +1,100 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowDown, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
-  const handleScrollDown = () => {
+  const handleExploreFeatures = () => {
+    console.log("Explore Features clicked");
     document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden section-light">
-      {/* Soft animated background elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full animate-float-gentle" 
-             style={{ background: 'radial-gradient(circle, rgba(74, 144, 226, 0.2) 0%, transparent 70%)' }}></div>
-        <div className="absolute top-3/4 right-1/4 w-80 h-80 rounded-full animate-float-gentle animation-delay-1000" 
-             style={{ background: 'radial-gradient(circle, rgba(80, 227, 194, 0.2) 0%, transparent 70%)' }}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full animate-float-gentle animation-delay-600" 
-             style={{ background: 'radial-gradient(circle, rgba(74, 144, 226, 0.15) 0%, transparent 70%)' }}></div>
+    <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-6">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-400/30 to-blue-400/30 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-4000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-gradient-to-r from-green-400/30 to-cyan-400/30 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
       </div>
 
-      <div className="container mx-auto text-center relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <Badge className="mb-8 bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 px-6 py-3 text-sm font-medium animate-scale-in">
-            <Sparkles className="w-4 h-4 mr-2 text-blue-500" />
-            Free & Unlimited AI Generation
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="text-center animate-fade-in">
+          <Badge className="mb-6 bg-white/10 text-white border-white/20 px-6 py-2 text-base backdrop-blur-lg animate-scale-in">
+            <Sparkles className="w-4 h-4 mr-2" />
+            🚀 The Future of AI Creation is Here
           </Badge>
           
-          <h1 className="mb-8 animate-fade-in-up">
-            Create Anything with
-            <span className="gradient-text block mt-2 animate-scale-in animation-delay-200">
-              Godes AI
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight animate-scale-in animation-delay-300">
+            <span className="block text-white mb-4">Create Anything</span>
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+              with AI Power
             </span>
           </h1>
           
-          <p className="text-xl mb-12 max-w-3xl mx-auto animate-fade-in-up animation-delay-400" style={{ color: 'var(--secondary-text)' }}>
-            Generate complete websites, interactive games, stunning images, and 3D models 
-            with our advanced AI. Professional-grade results, unlimited usage, completely free.
+          <p className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-gray-200 animate-fade-in animation-delay-500">
+            Generate <strong className="text-cyan-300">websites</strong>, create <strong className="text-purple-300">games</strong>, 
+            design <strong className="text-pink-300">images</strong>, and build <strong className="text-green-300">3D models</strong> 
+            — all with unlimited usage, completely free forever.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 animate-fade-in-up animation-delay-600">
-            <Link to="/studio">
-              <Button className="btn-primary text-lg px-8 py-6 h-auto shadow-lg">
-                <Zap className="w-5 h-5 mr-2" />
-                Launch AI Studio
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in animation-delay-700">
+            <Link to="/chat">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-white px-8 py-4 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Zap className="mr-2 w-5 h-5" />
+                Start Creating Now
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
+            
             <Button 
               variant="outline" 
-              className="border-2 text-lg px-8 py-6 h-auto bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-400"
-              style={{ borderColor: 'var(--primary-accent)', color: 'var(--primary-accent)' }}
-              onClick={() => document.getElementById('ai-studio')?.scrollIntoView({ behavior: 'smooth' })}
+              size="lg" 
+              onClick={handleExploreFeatures}
+              className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg rounded-full backdrop-blur-lg transition-all duration-300 transform hover:scale-105"
             >
-              Try Demo
+              <Globe className="mr-2 w-5 h-5" />
+              Explore Features
             </Button>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto text-center animate-fade-in-up animation-delay-800">
-            <div className="soft-card p-6 bg-white/80 backdrop-blur-sm">
-              <div className="text-3xl font-bold mb-2 gradient-text">∞</div>
-              <div className="text-sm" style={{ color: 'var(--secondary-text)' }}>Unlimited Usage</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in animation-delay-1000">
+            <div className="text-center group hover:scale-110 transition-all duration-300">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl">
+                <Globe className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-white mb-2">Websites</h3>
+              <p className="text-sm text-gray-300">Professional sites in seconds</p>
             </div>
-            <div className="soft-card p-6 bg-white/80 backdrop-blur-sm animation-delay-200">
-              <div className="text-3xl font-bold mb-2 gradient-text">$0</div>
-              <div className="text-sm" style={{ color: 'var(--secondary-text)' }}>Completely Free</div>
+            
+            <div className="text-center group hover:scale-110 transition-all duration-300">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl">
+                <Zap className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-white mb-2">Games</h3>
+              <p className="text-sm text-gray-300">Interactive experiences</p>
             </div>
-            <div className="soft-card p-6 bg-white/80 backdrop-blur-sm animation-delay-400">
-              <div className="text-3xl font-bold mb-2 gradient-text">6+</div>
-              <div className="text-sm" style={{ color: 'var(--secondary-text)' }}>Creation Types</div>
+            
+            <div className="text-center group hover:scale-110 transition-all duration-300">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-pink-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl">
+                <Sparkles className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-white mb-2">Images</h3>
+              <p className="text-sm text-gray-300">Stunning AI artwork</p>
             </div>
-            <div className="soft-card p-6 bg-white/80 backdrop-blur-sm animation-delay-600">
-              <div className="text-3xl font-bold mb-2 gradient-text">⚡</div>
-              <div className="text-sm" style={{ color: 'var(--secondary-text)' }}>Instant Results</div>
+            
+            <div className="text-center group hover:scale-110 transition-all duration-300">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl">
+                <Globe className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-white mb-2">3D Models</h3>
+              <p className="text-sm text-gray-300">Professional 3D assets</p>
             </div>
           </div>
-        </div>
-        
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-400" onClick={handleScrollDown}>
-          <ArrowDown className="w-6 h-6" style={{ color: 'var(--primary-accent)' }} />
         </div>
       </div>
     </section>

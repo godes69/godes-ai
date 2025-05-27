@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,25 +24,25 @@ const Navbar = () => {
   };
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    (e.target as HTMLElement).style.color = 'var(--primary-accent)';
+    (e.target as HTMLAnchorElement).style.color = 'var(--primary-accent)';
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    (e.target as HTMLElement).style.color = 'var(--secondary-text)';
+    (e.target as HTMLAnchorElement).style.color = 'var(--secondary-text)';
   };
 
   return (
     <nav className="fixed top-0 w-full z-50 glass-effect border-b" style={{ borderColor: 'var(--border-color)' }}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center shadow-lg">
               <Sparkles className="text-white w-5 h-5" />
             </div>
             <span className="text-2xl font-bold gradient-text">
               Godes AI
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -55,16 +56,15 @@ const Navbar = () => {
             >
               Features
             </a>
-            <a 
-              href="#capabilities" 
-              onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
+            <Link 
+              to="/chat"
               className="font-medium transition-all duration-400 hover:scale-105" 
               style={{ color: 'var(--secondary-text)' }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              Capabilities
-            </a>
+              AI Chat
+            </Link>
             <a 
               href="#about" 
               onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
@@ -83,12 +83,13 @@ const Navbar = () => {
             >
               Sign In
             </Button>
-            <Button 
-              className="btn-primary font-medium shadow-lg"
-              onClick={handleGetStarted}
-            >
-              Get Started
-            </Button>
+            <Link to="/chat">
+              <Button 
+                className="btn-primary font-medium shadow-lg"
+              >
+                Try AI Chat
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -117,14 +118,14 @@ const Navbar = () => {
               >
                 Features
               </a>
-              <a 
-                href="#capabilities" 
-                onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
+              <Link 
+                to="/chat"
                 className="font-medium transition-colors duration-400" 
                 style={{ color: 'var(--secondary-text)' }}
+                onClick={() => setIsMenuOpen(false)}
               >
-                Capabilities
-              </a>
+                AI Chat
+              </Link>
               <a 
                 href="#about" 
                 onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
@@ -142,12 +143,14 @@ const Navbar = () => {
                 >
                   Sign In
                 </Button>
-                <Button 
-                  className="btn-primary font-medium"
-                  onClick={handleGetStarted}
-                >
-                  Get Started
-                </Button>
+                <Link to="/chat">
+                  <Button 
+                    className="btn-primary font-medium w-full"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Try AI Chat
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
