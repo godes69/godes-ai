@@ -1,12 +1,9 @@
+
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ThreeBackground from "@/components/ThreeBackground";
 import AIStudio from "@/components/AIStudio";
 
 const Index = () => {
@@ -17,8 +14,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      <ThreeBackground />
+    <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: 'var(--background)', color: 'var(--primary-text)' }}>
       <div className="relative z-10">
         <Navbar />
         <Hero />

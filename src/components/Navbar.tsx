@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,38 +13,72 @@ const Navbar = () => {
 
   const handleGetStarted = () => {
     console.log("Get Started clicked");
-    // Scroll to features section
     document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleNavClick = (section: string) => {
     console.log(`Navigation to ${section} clicked`);
     document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false); // Close mobile menu
+    setIsMenuOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+    <nav className="fixed top-0 w-full z-50 glass-effect border-b" style={{ borderColor: 'var(--border-color)' }}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">G</span>
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center shadow-lg">
+              <Sparkles className="text-white w-5 h-5" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold gradient-text">
               Godes AI
             </span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">Features</a>
-            <a href="#capabilities" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">Capabilities</a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">About</a>
-            <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white" onClick={handleSignIn}>
+            <a 
+              href="#features" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
+              className="font-medium transition-all duration-400 hover:scale-105" 
+              style={{ color: 'var(--secondary-text)' }}
+              onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'}
+              onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}
+            >
+              Features
+            </a>
+            <a 
+              href="#capabilities" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
+              className="font-medium transition-all duration-400 hover:scale-105" 
+              style={{ color: 'var(--secondary-text)' }}
+              onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'}
+              onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}
+            >
+              Capabilities
+            </a>
+            <a 
+              href="#about" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
+              className="font-medium transition-all duration-400 hover:scale-105" 
+              style={{ color: 'var(--secondary-text)' }}
+              onMouseEnter={(e) => e.target.style.color = 'var(--primary-accent)'}
+              onMouseLeave={(e) => e.target.style.color = 'var(--secondary-text)'}
+            >
+              About
+            </a>
+            <Button 
+              variant="outline" 
+              className="border-2 hover:bg-white/50 transition-all duration-400 font-medium"
+              style={{ borderColor: 'var(--primary-accent)', color: 'var(--primary-accent)' }}
+              onClick={handleSignIn}
+            >
               Sign In
             </Button>
-            <Button className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600" onClick={handleGetStarted}>
+            <Button 
+              className="btn-primary font-medium shadow-lg"
+              onClick={handleGetStarted}
+            >
               Get Started
             </Button>
           </div>
@@ -55,7 +89,8 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white"
+              className="transition-all duration-400 hover:bg-white/20"
+              style={{ color: 'var(--primary-text)' }}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -64,16 +99,45 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-white/10">
+          <div className="md:hidden mt-4 pb-4 border-t animate-fade-in-up" style={{ borderColor: 'var(--border-color)' }}>
             <div className="flex flex-col space-y-4 mt-4">
-              <a href="#features" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">Features</a>
-              <a href="#capabilities" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">Capabilities</a>
-              <a href="#about" onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} className="text-gray-300 hover:text-white transition-colors cursor-pointer">About</a>
-              <div className="flex flex-col space-y-2 pt-4">
-                <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white" onClick={handleSignIn}>
+              <a 
+                href="#features" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
+                className="font-medium transition-colors duration-400" 
+                style={{ color: 'var(--secondary-text)' }}
+              >
+                Features
+              </a>
+              <a 
+                href="#capabilities" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
+                className="font-medium transition-colors duration-400" 
+                style={{ color: 'var(--secondary-text)' }}
+              >
+                Capabilities
+              </a>
+              <a 
+                href="#about" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('features'); }} 
+                className="font-medium transition-colors duration-400" 
+                style={{ color: 'var(--secondary-text)' }}
+              >
+                About
+              </a>
+              <div className="flex flex-col space-y-3 pt-4">
+                <Button 
+                  variant="outline" 
+                  className="border-2 hover:bg-white/50 transition-all duration-400 font-medium"
+                  style={{ borderColor: 'var(--primary-accent)', color: 'var(--primary-accent)' }}
+                  onClick={handleSignIn}
+                >
                   Sign In
                 </Button>
-                <Button className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600" onClick={handleGetStarted}>
+                <Button 
+                  className="btn-primary font-medium"
+                  onClick={handleGetStarted}
+                >
                   Get Started
                 </Button>
               </div>
